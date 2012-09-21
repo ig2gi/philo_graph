@@ -4,7 +4,7 @@
     <var name="canvasHeight" value="6000.0"/>
     <node name="PHI" prototype="corevector.geonet" x="480" y="-2320">
         <param name="color" type="color">
-            <value>#b1b7ac5d</value>
+            <value>#b1b7ac31</value>
         </param>
         <node name="transform1" prototype="corevector.transform" x="500" y="600">
             <param name="tx">
@@ -144,7 +144,7 @@
             <value>19.0</value>
         </param>
     </node>
-    <node name="copy2" prototype="corevector.copy" x="390" y="-2010">
+    <node name="copy2" prototype="corevector.copy" x="430" y="-1960">
         <param name="copies">
             <expression>2700 / 100 + 1</expression>
         </param>
@@ -154,6 +154,73 @@
         <param name="expr">
             <value>n=CNUM</value>
         </param>
+    </node>
+    <node name="legend" prototype="corevector.geonet" x="450" y="-1550">
+        <param name="color" type="color">
+            <value>#d3d3d3ff</value>
+        </param>
+        <node name="textonpath1" prototype="corevector.textonpath" rendered="true" x="1110" y="-1710">
+            <param name="text">
+                <value>legend</value>
+            </param>
+            <param name="font">
+                <value>EurostileBold</value>
+            </param>
+            <param name="size">
+                <value>97.0</value>
+            </param>
+            <param name="start">
+                <value>50.0</value>
+            </param>
+            <param name="loop">
+                <value>0</value>
+            </param>
+            <param name="dy">
+                <value>15.0</value>
+            </param>
+            <param name="fill">
+                <expression>parent.color</expression>
+            </param>
+        </node>
+        <node name="ellipse1" prototype="corevector.ellipse" x="770" y="-1640">
+            <param name="width">
+                <value>1500.0</value>
+            </param>
+            <param name="height">
+                <expression>width</expression>
+            </param>
+        </node>
+        <node name="compound1" prototype="corevector.compound" x="970" y="-1740">
+            <param name="function">
+                <value>subtracted</value>
+            </param>
+            <param name="fill">
+                <value>#ffffffff</value>
+            </param>
+            <param name="stroke">
+                <expression>parent.color</expression>
+            </param>
+            <param name="strokeWidth">
+                <value>6.0</value>
+            </param>
+        </node>
+        <node name="arc1" prototype="corevector.arc" x="790" y="-1790">
+            <param name="width">
+                <value>5500.0</value>
+            </param>
+            <param name="height">
+                <expression>width</expression>
+            </param>
+            <param name="start_angle">
+                <value>-18.0</value>
+            </param>
+            <param name="degrees">
+                <value>16.0</value>
+            </param>
+        </node>
+        <conn input="textonpath1" output="compound1" port="shape"/>
+        <conn input="compound1" output="arc1" port="shape"/>
+        <conn input="compound1" output="ellipse1" port="shapeB"/>
     </node>
     <node name="merge1" prototype="corevector.merge" rendered="true" x="770" y="-2140"/>
     <node name="philosophs" prototype="corevector.geonet" x="260" y="-1780">
@@ -364,7 +431,7 @@
             <value>#ca9300ff</value>
         </param>
     </node>
-    <node name="religions" prototype="corevector.geonet" x="480" y="-1760">
+    <node name="religions" prototype="corevector.geonet" x="480" y="-1720">
         <param name="color" type="color">
             <value>#6a6a6aff</value>
         </param>
@@ -374,6 +441,145 @@
         <param name="distance" type="float">
             <value>2300.0</value>
         </param>
+        <param name="angle_islam" type="float" widget="angle">
+            <expression>340 * (640-700) / 2700</expression>
+        </param>
+        <param name="angle_jude" type="float" widget="angle">
+            <expression>340 * (-550-700) / 2700</expression>
+        </param>
+        <node name="polygon1" prototype="corevector.polygon" x="-60" y="1450">
+            <param name="radius">
+                <value>655.0</value>
+            </param>
+            <param name="fill">
+                <value>#020202ff</value>
+            </param>
+        </node>
+        <node name="polygon2" prototype="corevector.polygon" x="-50" y="1580">
+            <param name="radius">
+                <expression>polygon1.radius - 20</expression>
+            </param>
+            <param name="fill">
+                <value>#020202ff</value>
+            </param>
+        </node>
+        <node name="fit3" prototype="corevector.fit" x="1080" y="1280">
+            <param name="width">
+                <value>100.0</value>
+            </param>
+        </node>
+        <node name="fit2" prototype="corevector.fit" x="1130" y="870">
+            <param name="width">
+                <value>100.0</value>
+            </param>
+        </node>
+        <node name="fit1" prototype="corevector.fit" x="1160" y="460">
+            <param name="width">
+                <value>100.0</value>
+            </param>
+        </node>
+        <node name="compound13" prototype="corevector.compound" x="1370" y="1390">
+            <param name="function">
+                <value>subtracted</value>
+            </param>
+        </node>
+        <node name="transform1" prototype="corevector.transform" x="1310" y="480">
+            <param name="tx">
+                <expression>math.cos(math.toRadians(parent.angle_christ))  * parent.distance</expression>
+            </param>
+            <param name="ty">
+                <expression>math.sin(math.toRadians(parent.angle_christ))  * parent.distance</expression>
+            </param>
+            <param name="r">
+                <expression>parent.angle_christ +90</expression>
+            </param>
+        </node>
+        <node name="compound12" prototype="corevector.compound" x="50" y="1500">
+            <param name="function">
+                <value>subtracted</value>
+            </param>
+        </node>
+        <node name="transform2" prototype="corevector.transform" x="110" y="420">
+            <param name="ty">
+                <expression>rect2.width /2.8</expression>
+            </param>
+            <param name="r">
+                <value>90.0</value>
+            </param>
+        </node>
+        <node name="rect3" prototype="corevector.rect" x="-50" y="450">
+            <param name="width">
+                <expression>rect2.width * 1.8</expression>
+            </param>
+            <param name="rx">
+                <value>50.0</value>
+            </param>
+            <param name="ry">
+                <value>50.0</value>
+            </param>
+        </node>
+        <node name="rect2" prototype="corevector.rect" x="-50" y="340">
+            <param name="width">
+                <value>504.0</value>
+            </param>
+            <param name="rx">
+                <value>50.0</value>
+            </param>
+            <param name="ry">
+                <value>50.0</value>
+            </param>
+        </node>
+        <node name="transform3" prototype="corevector.transform" x="560" y="720">
+            <param name="tx">
+                <value>-82.0</value>
+            </param>
+        </node>
+        <node name="compound11" prototype="corevector.compound" x="1320" y="1050">
+            <param name="function">
+                <value>subtracted</value>
+            </param>
+        </node>
+        <node name="compound10" prototype="corevector.compound" x="1380" y="690">
+            <param name="function">
+                <value>subtracted</value>
+            </param>
+        </node>
+        <node name="transform4" prototype="corevector.transform" x="70" y="1230">
+            <param name="r">
+                <value>60.0</value>
+            </param>
+        </node>
+        <node name="transform5" prototype="corevector.transform" x="500" y="1360">
+            <param name="r">
+                <value>30.0</value>
+            </param>
+        </node>
+        <node name="transform6" prototype="corevector.transform" x="1260" y="900">
+            <param name="tx">
+                <expression>-math.cos(math.toRadians(parent.angle_islam))  * parent.distance</expression>
+            </param>
+            <param name="ty">
+                <expression>math.sin(math.toRadians(parent.angle_islam))  * parent.distance</expression>
+            </param>
+            <param name="r">
+                <expression>parent.angle_islam - 90</expression>
+            </param>
+        </node>
+        <node name="transform7" prototype="corevector.transform" x="1230" y="1300">
+            <param name="tx">
+                <expression>-math.cos(math.toRadians(-parent.angle_jude))  * parent.distance</expression>
+            </param>
+            <param name="ty">
+                <expression>math.sin(math.toRadians(parent.angle_jude))  * parent.distance</expression>
+            </param>
+            <param name="r">
+                <expression>parent.angle_jude</expression>
+            </param>
+        </node>
+        <node name="merge4" prototype="corevector.merge" x="670" y="1450"/>
+        <node name="merge1" prototype="corevector.merge" rendered="true" x="1930" y="680"/>
+        <node name="merge2" prototype="corevector.merge" x="420" y="410"/>
+        <node name="merge3" prototype="corevector.merge" x="650" y="890"/>
         <node name="ellipse4" prototype="corevector.ellipse" x="1260" y="770">
             <param name="width">
                 <value>2000.0</value>
@@ -436,6 +642,54 @@
                 <value>12.0</value>
             </param>
         </node>
+        <node name="dotline5" prototype="corevector.geonet" x="1150" y="1410">
+            <param name="x" type="float">
+                <value>0.0</value>
+            </param>
+            <param name="y" type="float">
+                <value>0.0</value>
+            </param>
+            <param name="distance" type="float">
+                <expression>parent.distance - fit1.width/2</expression>
+            </param>
+            <param name="angle" type="float" widget="angle">
+                <expression>-parent.angle_jude +180</expression>
+            </param>
+            <param name="color" type="color">
+                <expression>parent.color</expression>
+            </param>
+            <node name="ellipse1" prototype="corevector.ellipse" x="-400" y="200">
+                <param name="width">
+                    <value>4.0</value>
+                </param>
+                <param name="height">
+                    <expression>width</expression>
+                </param>
+                <param name="fill">
+                    <expression>parent.color</expression>
+                </param>
+            </node>
+            <node name="place1" prototype="corevector.place" rendered="true" x="-180" y="230"/>
+            <node name="line1" prototype="corevector.line" x="-370" y="310">
+                <param name="x">
+                    <expression>parent.x</expression>
+                </param>
+                <param name="y">
+                    <expression>parent.y</expression>
+                </param>
+                <param name="angle">
+                    <expression>parent.angle</expression>
+                </param>
+                <param name="distance">
+                    <expression>parent.distance</expression>
+                </param>
+                <param name="points">
+                    <expression>math.rint(distance/ellipse1.width)/1.5</expression>
+                </param>
+            </node>
+            <conn input="place1" output="ellipse1" port="shape"/>
+            <conn input="place1" output="line1" port="template"/>
+        </node>
         <node name="ellipse1" prototype="corevector.ellipse" x="170" y="520">
             <param name="y">
                 <value>172.0</value>
@@ -453,6 +707,20 @@
                 <value>62.0</value>
             </param>
         </node>
+        <node name="arc1" prototype="corevector.arc" x="820" y="-150">
+            <param name="width">
+                <expression>2 * parent.distance - 140</expression>
+            </param>
+            <param name="height">
+                <expression>width</expression>
+            </param>
+            <param name="degrees">
+                <value>2.0</value>
+            </param>
+            <param name="fill">
+                <value>#888888ff</value>
+            </param>
+        </node>
         <node name="ellipse8" prototype="corevector.ellipse" x="130" y="1690">
             <param name="x">
                 <expression>ellipse9.x</expression>
@@ -462,6 +730,65 @@
             </param>
             <param name="width">
                 <expression>ellipse9.width - 30</expression>
+            </param>
+            <param name="height">
+                <expression>width</expression>
+            </param>
+            <param name="fill">
+                <value>#ffffffff</value>
+            </param>
+        </node>
+        <node name="dotline4" prototype="corevector.geonet" x="1130" y="1030">
+            <param name="x" type="float">
+                <value>0.0</value>
+            </param>
+            <param name="y" type="float">
+                <value>0.0</value>
+            </param>
+            <param name="distance" type="float">
+                <expression>parent.distance - fit1.width/2</expression>
+            </param>
+            <param name="angle" type="float" widget="angle">
+                <expression>-parent.angle_islam +180</expression>
+            </param>
+            <param name="color" type="color">
+                <expression>parent.color</expression>
+            </param>
+            <node name="ellipse1" prototype="corevector.ellipse" x="-400" y="200">
+                <param name="width">
+                    <value>4.0</value>
+                </param>
+                <param name="height">
+                    <expression>width</expression>
+                </param>
+                <param name="fill">
+                    <expression>parent.color</expression>
+                </param>
+            </node>
+            <node name="place1" prototype="corevector.place" rendered="true" x="-180" y="230"/>
+            <node name="line1" prototype="corevector.line" x="-370" y="310">
+                <param name="x">
+                    <expression>parent.x</expression>
+                </param>
+                <param name="y">
+                    <expression>parent.y</expression>
+                </param>
+                <param name="angle">
+                    <expression>parent.angle</expression>
+                </param>
+                <param name="distance">
+                    <expression>parent.distance</expression>
+                </param>
+                <param name="points">
+                    <expression>math.rint(distance/ellipse1.width)/1.5</expression>
+                </param>
+            </node>
+            <conn input="place1" output="ellipse1" port="shape"/>
+            <conn input="place1" output="line1" port="template"/>
+        </node>
+        <node name="ellipse9" prototype="corevector.ellipse" x="120" y="1590">
+            <param name="width">
+                <value>1611.0</value>
             </param>
             <param name="height">
                 <expression>width</expression>
@@ -518,17 +845,6 @@
             <conn input="place1" output="ellipse1" port="shape"/>
             <conn input="place1" output="line1" port="template"/>
         </node>
-        <node name="ellipse9" prototype="corevector.ellipse" x="120" y="1590">
-            <param name="width">
-                <value>1611.0</value>
-            </param>
-            <param name="height">
-                <expression>width</expression>
-            </param>
-            <param name="fill">
-                <value>#ffffffff</value>
-            </param>
-        </node>
         <node name="ellipse6" prototype="corevector.ellipse" x="280" y="1050">
             <param name="x">
                 <expression>ellipse7.x</expression>
@@ -547,23 +863,6 @@
             </param>
             <param name="strokeWidth">
                 <value>62.0</value>
-            </param>
-        </node>
-        <node name="star1" prototype="corevector.star" x="330" y="940">
-            <param name="x">
-                <value>-94.0</value>
-            </param>
-            <param name="y">
-                <value>-115.0</value>
-            </param>
-            <param name="points">
-                <value>5</value>
-            </param>
-            <param name="outer">
-                <value>447.0</value>
-            </param>
-            <param name="inner">
-                <value>217.0</value>
             </param>
         </node>
         <node name="ellipse7" prototype="corevector.ellipse" x="440" y="1050">
@@ -586,6 +885,23 @@
                 <value>63.0</value>
             </param>
         </node>
+        <node name="star1" prototype="corevector.star" x="330" y="940">
+            <param name="x">
+                <value>-94.0</value>
+            </param>
+            <param name="y">
+                <value>-115.0</value>
+            </param>
+            <param name="points">
+                <value>5</value>
+            </param>
+            <param name="outer">
+                <value>447.0</value>
+            </param>
+            <param name="inner">
+                <value>217.0</value>
+            </param>
+        </node>
         <node name="compound9" prototype="corevector.compound" x="260" y="1580">
             <param name="function">
                 <value>subtracted</value>
@@ -594,26 +910,12 @@
                 <value>1</value>
             </param>
         </node>
-        <node name="compound8" prototype="corevector.compound" x="360" y="1360">
-            <param name="fill">
-                <value>#ffffffff</value>
-            </param>
-            <param name="stroke">
-                <value>#4f4f4fff</value>
+        <node name="compound7" prototype="corevector.compound" x="260" y="1340">
+            <param name="invert_difference">
+                <value>1</value>
             </param>
             <param name="strokeWidth">
-                <value>45.0</value>
-            </param>
-        </node>
-        <node name="compound7" prototype="corevector.compound" x="150" y="1450">
-            <param name="function">
-                <value>subtracted</value>
-            </param>
-            <param name="fill">
-                <value>#ffffffff</value>
-            </param>
-            <param name="strokeWidth">
-                <value>20.0</value>
+                <value>6.0</value>
             </param>
         </node>
         <node name="compound6" prototype="corevector.compound" x="580" y="1040">
@@ -627,29 +929,12 @@
                 <value>10.0</value>
             </param>
         </node>
-        <node name="polygon1" prototype="corevector.polygon" x="-60" y="1450">
-            <param name="radius">
-                <value>655.0</value>
-            </param>
-            <param name="fill">
-                <value>#ffffffff</value>
-            </param>
-            <param name="strokeWidth">
-                <value>25.0</value>
-            </param>
-        </node>
-        <node name="compound5" prototype="corevector.compound" x="200" y="1280">
+        <node name="compound5" prototype="corevector.compound" x="1130" y="-40">
             <param name="function">
                 <value>subtracted</value>
             </param>
-            <param name="invert_difference">
-                <value>1</value>
-            </param>
             <param name="fill">
-                <value>#ffffffff</value>
-            </param>
-            <param name="strokeWidth">
-                <value>20.0</value>
+                <expression>parent.color</expression>
             </param>
         </node>
         <node name="compound4" prototype="corevector.compound" x="540" y="850"/>
@@ -674,87 +959,39 @@
                 <value>#414141ff</value>
             </param>
         </node>
-        <node name="fit1" prototype="corevector.fit" x="1160" y="460">
-            <param name="width">
-                <value>100.0</value>
-            </param>
-        </node>
-        <node name="transform1" prototype="corevector.transform" x="1310" y="480">
-            <param name="tx">
-                <expression>math.cos(math.toRadians(parent.angle_christ))  * parent.distance</expression>
-            </param>
-            <param name="ty">
-                <expression>math.sin(math.toRadians(parent.angle_christ))  * parent.distance</expression>
-            </param>
-            <param name="r">
-                <expression>parent.angle_christ +90</expression>
-            </param>
-        </node>
-        <node name="color3" prototype="corevector.color" x="960" y="1370">
+        <node name="color3" prototype="corevector.color" x="870" y="1400">
             <param name="fill">
-                <value>#ffffffff</value>
+                <expression>parent.color</expression>
             </param>
             <param name="stroke">
                 <expression>parent.color</expression>
             </param>
             <param name="strokeWidth">
-                <value>55.0</value>
+                <value>4.0</value>
             </param>
         </node>
-        <node name="rect3" prototype="corevector.rect" x="-50" y="450">
+        <node name="copy1" prototype="corevector.copy" x="970" y="-90">
+            <param name="copies">
+                <value>123</value>
+            </param>
+            <param name="r">
+                <value>-3.0</value>
+            </param>
+        </node>
+        <node name="ellipse10" prototype="corevector.ellipse" x="840" y="40">
             <param name="width">
-                <expression>rect2.width * 1.8</expression>
+                <expression>2 * parent.distance - 150</expression>
             </param>
-            <param name="rx">
-                <value>50.0</value>
+            <param name="height">
+                <expression>width</expression>
             </param>
-            <param name="ry">
-                <value>50.0</value>
+            <param name="fill">
+                <value>#ffffffff</value>
             </param>
-        </node>
-        <node name="transform2" prototype="corevector.transform" x="110" y="420">
-            <param name="ty">
-                <expression>rect2.width /2.8</expression>
-            </param>
-            <param name="r">
-                <value>90.0</value>
+            <param name="strokeWidth">
+                <value>3.0</value>
             </param>
         </node>
-        <node name="transform3" prototype="corevector.transform" x="560" y="720">
-            <param name="tx">
-                <value>-82.0</value>
-            </param>
-        </node>
-        <node name="rect2" prototype="corevector.rect" x="-50" y="340">
-            <param name="width">
-                <value>504.0</value>
-            </param>
-            <param name="rx">
-                <value>50.0</value>
-            </param>
-            <param name="ry">
-                <value>50.0</value>
-            </param>
-        </node>
-        <node name="compound10" prototype="corevector.compound" x="1380" y="690">
-            <param name="function">
-                <value>subtracted</value>
-            </param>
-        </node>
-        <node name="transform4" prototype="corevector.transform" x="10" y="1280">
-            <param name="r">
-                <value>60.0</value>
-            </param>
-        </node>
-        <node name="transform5" prototype="corevector.transform" x="500" y="1360">
-            <param name="r">
-                <value>30.0</value>
-            </param>
-        </node>
-        <node name="merge4" prototype="corevector.merge" x="640" y="1500"/>
-        <node name="merge1" prototype="corevector.merge" rendered="true" x="1540" y="570"/>
-        <node name="merge2" prototype="corevector.merge" x="420" y="410"/>
-        <node name="merge3" prototype="corevector.merge" x="650" y="890"/>
         <node name="color2" prototype="corevector.color" x="960" y="820">
             <param name="fill">
                 <expression>parent.color</expression>
@@ -765,16 +1002,18 @@
                 <expression>parent.color</expression>
             </param>
         </node>
+        <conn input="merge1" output="compound5" port="shapes"/>
+        <conn input="merge1" output="transform1" port="shapes"/>
+        <conn input="merge1" output="compound10" port="shapes"/>
+        <conn input="merge1" output="transform6" port="shapes"/>
+        <conn input="merge1" output="compound11" port="shapes"/>
+        <conn input="merge1" output="transform7" port="shapes"/>
+        <conn input="merge1" output="compound13" port="shapes"/>
         <conn input="compound9" output="ellipse8" port="shape"/>
         <conn input="compound9" output="ellipse9" port="shapeB"/>
-        <conn input="compound8" output="compound5" port="shape"/>
-        <conn input="compound8" output="compound7" port="shapeB"/>
         <conn input="compound7" output="transform4" port="shape"/>
-        <conn input="compound7" output="polygon1" port="shapeB"/>
         <conn input="compound6" output="ellipse6" port="shape"/>
         <conn input="compound6" output="ellipse7" port="shapeB"/>
-        <conn input="compound5" output="transform4" port="shape"/>
-        <conn input="compound5" output="polygon1" port="shapeB"/>
         <conn input="compound4" output="compound3" port="shape"/>
         <conn input="compound4" output="star1" port="shapeB"/>
         <conn input="compound3" output="ellipse2" port="shape"/>
@@ -786,10 +1025,7 @@
         <conn input="color3" output="merge4" port="shape"/>
         <conn input="transform2" output="rect3" port="shape"/>
         <conn input="transform3" output="merge3" port="shape"/>
-        <conn input="transform4" output="polygon1" port="shape"/>
-        <conn input="transform5" output="compound8" port="shape"/>
         <conn input="merge4" output="compound9" port="shapes"/>
-        <conn input="merge4" output="transform5" port="shapes"/>
         <conn input="merge2" output="compound1" port="shapes"/>
         <conn input="merge2" output="compound2" port="shapes"/>
         <conn input="merge3" output="compound4" port="shapes"/>
@@ -798,10 +1034,25 @@
         <conn input="color1" output="merge2" port="shape"/>
         <conn input="fit1" output="color1" port="shape"/>
         <conn input="transform1" output="fit1" port="shape"/>
-        <conn input="merge1" output="transform1" port="shapes"/>
         <conn input="compound10" output="dotline3" port="shape"/>
         <conn input="compound10" output="ellipse4" port="shapeB"/>
-        <conn input="merge1" output="compound10" port="shapes"/>
+        <conn input="fit2" output="color2" port="shape"/>
+        <conn input="transform6" output="fit2" port="shape"/>
+        <conn input="compound11" output="dotline4" port="shape"/>
+        <conn input="compound11" output="ellipse4" port="shapeB"/>
+        <conn input="transform7" output="fit3" port="shape"/>
+        <conn input="fit3" output="color3" port="shape"/>
+        <conn input="compound12" output="polygon2" port="shapeB"/>
+        <conn input="compound12" output="polygon1" port="shape"/>
+        <conn input="transform4" output="compound12" port="shape"/>
+        <conn input="compound7" output="compound12" port="shapeB"/>
+        <conn input="transform5" output="compound7" port="shape"/>
+        <conn input="merge4" output="transform5" port="shapes"/>
+        <conn input="compound13" output="ellipse4" port="shapeB"/>
+        <conn input="compound13" output="dotline5" port="shape"/>
+        <conn input="copy1" output="arc1" port="shape"/>
+        <conn input="compound5" output="copy1" port="shape"/>
+        <conn input="compound5" output="ellipse10" port="shapeB"/>
     </node>
     <node name="ring_1" prototype="corevector.geonet" x="100" y="-2160">
         <port name="c"/>
@@ -1376,13 +1627,13 @@
             <expression>-700 + stamp("n", 0) * 100</expression>
         </param>
         <param name="font">
-            <value>ArialMT</value>
+            <value>EurostileBold</value>
         </param>
         <param name="size">
-            <value>30.0</value>
+            <value>40.0</value>
         </param>
         <param name="x">
-            <value>1283.0</value>
+            <value>1299.0</value>
         </param>
     </node>
     <node name="transform1" prototype="corevector.transform" x="210" y="-1890">
@@ -1405,4 +1656,5 @@
     <conn input="ring_1" output="colors" port="c"/>
     <conn input="ring_2" output="colors" port="c"/>
     <conn input="ring_3" output="colors" port="c"/>
+    <conn input="merge1" output="legend" port="shapes"/>
 </ndbx>
