@@ -225,7 +225,7 @@
     <node name="merge1" prototype="corevector.merge" rendered="true" x="770" y="-2140"/>
     <node name="philosophs" prototype="corevector.geonet" x="260" y="-1780">
         <param name="file" type="string" widget="file">
-            <value>../data/philo-db/philosophers-Table 1.csv</value>
+            <value>../data/philo-db/core-philosophs.csv</value>
         </param>
         <node name="person" prototype="corevector.null" x="10" y="550">
             <param name="id" type="int">
@@ -247,7 +247,7 @@
                 <expression>stamp("persons_value_5", 1)</expression>
             </param>
             <param name="image" type="string">
-                <value>0.0</value>
+                <expression>stamp("persons_value_6", "x")</expression>
             </param>
             <param name="type" type="int">
                 <value>0</value>
@@ -354,7 +354,7 @@
                 <value>#595959ff</value>
             </param>
         </node>
-        <node name="merge1" prototype="corevector.merge" rendered="true" x="780" y="270"/>
+        <node name="merge1" prototype="corevector.merge" rendered="true" x="880" y="240"/>
         <node name="connect1" prototype="corevector.connect" x="730" y="590">
             <param name="closed">
                 <value>0</value>
@@ -1641,7 +1641,7 @@
     <node name="ring_3" prototype="corevector.geonet" x="0" y="-1970">
         <port name="c"/>
         <param name="file" type="string" widget="file">
-            <value>../data/philo-db/siècles-Table 1.csv</value>
+            <value>../data/philo-db/periods-centuries.csv</value>
         </param>
         <param name="width" type="float">
             <value>2451.0</value>
@@ -1680,6 +1680,33 @@
             </param>
             <param name="stroke">
                 <value>#8d8d8dff</value>
+            </param>
+        </node>
+        <node name="arc2" prototype="corevector.arc" x="270" y="190">
+            <port name="p"/>
+            <param name="width">
+                <expression>if (period.height == 1) {parent.width} else {parent.width + 200.0}</expression>
+            </param>
+            <param name="height">
+                <expression>width</expression>
+            </param>
+            <param name="start_angle">
+                <expression>period.angle</expression>
+            </param>
+            <param name="degrees">
+                <expression>period.degrees</expression>
+            </param>
+        </node>
+        <node name="merge1" prototype="corevector.merge" x="710" y="190"/>
+        <node name="compound1" prototype="corevector.compound" x="430" y="230">
+            <param name="function">
+                <value>subtracted</value>
+            </param>
+            <param name="fill">
+                <expression>color(period.color.r,period.color.g,period.color.b,0.3)</expression>
+            </param>
+            <param name="strokeWidth">
+                <value>1.0</value>
             </param>
         </node>
         <node name="textpath1" prototype="corevector.textpath" x="140" y="700">
@@ -1738,34 +1765,7 @@
                 <expression>stamp("periods_value_4",0)</expression>
             </param>
             <param name="color" type="color">
-                <expression>[parent.colors.color1, parent.colors.color2, parent.colors.color3, parent.colors.color4][period.parentid-1]</expression>
-            </param>
-        </node>
-        <node name="arc2" prototype="corevector.arc" x="270" y="190">
-            <port name="p"/>
-            <param name="width">
-                <expression>if (period.height == 1) {parent.width} else {parent.width + 200.0}</expression>
-            </param>
-            <param name="height">
-                <expression>width</expression>
-            </param>
-            <param name="start_angle">
-                <expression>period.angle</expression>
-            </param>
-            <param name="degrees">
-                <expression>period.degrees</expression>
-            </param>
-        </node>
-        <node name="merge1" prototype="corevector.merge" x="710" y="190"/>
-        <node name="compound1" prototype="corevector.compound" x="430" y="230">
-            <param name="function">
-                <value>subtracted</value>
-            </param>
-            <param name="fill">
-                <expression>color(period.color.r,period.color.g,period.color.b,0.3)</expression>
-            </param>
-            <param name="strokeWidth">
-                <value>1.0</value>
+                <expression>[parent.colors.color1, parent.colors.color2, parent.colors.color3, parent.colors.color4][parentid-1]</expression>
             </param>
         </node>
         <conn input="periods" output="merge1" port="shape"/>
