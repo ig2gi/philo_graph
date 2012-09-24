@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ndbx formatVersion="1.0" type="file">
+    <link href="java:nodebox.function.MathFunctions" rel="functions"/>
+    <link href="java:nodebox.function.StringFunctions" rel="functions"/>
+    <link href="java:nodebox.function.ColorFunctions" rel="functions"/>
+    <link href="java:nodebox.function.ListFunctions" rel="functions"/>
+    <link href="java:nodebox.function.DataFunctions" rel="functions"/>
+    <link href="python:libraries/corevector/corevector.py" rel="functions"/>
+    <link href="python:libraries/l_system/l_system.py" rel="functions"/>
+    <link href="python:libraries/packing/packing.py" rel="functions"/>
+    <node name="root" renderedChild="combine3">
+        <node name="age" position="500.00,480.00" prototype="math.add"/>
+        <node name="colorize1" position="840.00,600.00" prototype="corevector.colorize">
+            <port name="fill" type="color" value="#e77a00ff"/>
+        </node>
+        <node name="combine1" position="1060.00,120.00" prototype="list.combine"/>
+        <node name="combine2" position="1180.00,400.00" prototype="list.combine"/>
+        <node name="combine3" position="1200.00,200.00" prototype="list.combine"/>
+        <node name="compound1" position="880.00,240.00" prototype="corevector.compound"/>
+        <node name="convert_range1" position="440.00,700.00" prototype="math.convert_range">
+            <port name="source_end" type="float" value="5.0"/>
+            <port name="target_start" type="float" value="255.0"/>
+            <port name="target_end" type="float" value="0.0"/>
+            <port name="method" type="string" value="ignore"/>
+        </node>
+        <node name="count1" position="280.00,60.00" prototype="list.count"/>
+        <node name="from" position="280.00,240.00" prototype="data.lookup">
+            <port name="key" type="string" value="DATE1"/>
+        </node>
+        <node name="grid1" position="440.00,20.00" prototype="corevector.grid">
+            <port name="columns" type="int" value="1"/>
+            <port name="width" type="float" value="170.0"/>
+            <port name="height" type="float" value="3500.0"/>
+        </node>
+        <node name="importance" position="280.00,400.00" prototype="data.lookup">
+            <port name="key" type="string" value="IMP"/>
+        </node>
+        <node name="line_angle1" position="680.00,420.00" prototype="corevector.line_angle"/>
+        <node name="multiply1" position="600.00,480.00" prototype="math.multiply">
+            <port name="value2" type="float" value="0.8"/>
+        </node>
+        <node name="name" position="280.00,160.00" prototype="data.lookup">
+            <port name="key" type="string" value="PHILOSOPHERS"/>
+        </node>
+        <node name="negate1" position="460.00,380.00" prototype="math.negate"/>
+        <node name="philosophers" position="20.00,160.00" prototype="data.import_csv">
+            <port name="file" type="string" value="/Users/gperrin/Dev/git_repo/philo_graph/data/philo-db/core-philosophs.csv"/>
+        </node>
+        <node name="rgb_color1" position="680.00,700.00" prototype="color.rgb_color">
+            <port name="green" type="float" value="10.0"/>
+        </node>
+        <node name="star1" position="720.00,600.00" prototype="corevector.star">
+            <port name="points" type="int" value="6"/>
+            <port name="outer" type="float" value="10.0"/>
+            <port name="inner" type="float" value="5.0"/>
+        </node>
+        <node name="textpath1" position="640.00,80.00" prototype="corevector.textpath">
+            <port name="font_name" type="string" value="EurostileRegular"/>
+            <port name="font_size" type="float" value="10.0"/>
+            <port name="align" type="string" value="RIGHT"/>
+            <port name="position" type="point" value="20.00,60.00"/>
+        </node>
+        <node name="textpath2" position="640.00,200.00" prototype="corevector.textpath">
+            <port name="font_name" type="string" value="EurostileRegular"/>
+            <port name="font_size" type="float" value="10.0"/>
+            <port name="align" type="string" value="RIGHT"/>
+        </node>
+        <node name="textpath3" position="640.00,300.00" prototype="corevector.textpath">
+            <port name="font_name" type="string" value="EurostileRegular"/>
+            <port name="font_size" type="float" value="10.0"/>
+            <port name="align" type="string" value="RIGHT"/>
+        </node>
+        <node name="to" position="280.00,320.00" prototype="data.lookup">
+            <port name="key" type="string" value="DATE2"/>
+        </node>
+        <node name="translate1" position="740.00,220.00" prototype="corevector.translate">
+            <port name="translate" type="point" value="50.00,0.00"/>
+        </node>
+        <node name="translate2" position="740.00,320.00" prototype="corevector.translate">
+            <port name="translate" type="point" value="100.00,0.00"/>
+        </node>
+        <node name="translate3" position="820.00,420.00" prototype="corevector.translate">
+            <port name="translate" type="point" value="130.00,0.00"/>
+        </node>
+        <node name="translate4" position="960.00,540.00" prototype="corevector.translate">
+            <port name="translate" type="point" value="10.00,0.00"/>
+        </node>
+        <conn input="count1.list" output="philosophers"/>
+        <conn input="to.list" output="philosophers"/>
+        <conn input="textpath1.text" output="name"/>
+        <conn input="name.list" output="philosophers"/>
+        <conn input="grid1.rows" output="count1"/>
+        <conn input="from.list" output="philosophers"/>
+        <conn input="textpath2.text" output="from"/>
+        <conn input="textpath2.position" output="grid1"/>
+        <conn input="textpath3.text" output="to"/>
+        <conn input="translate2.shape" output="textpath3"/>
+        <conn input="translate1.shape" output="textpath2"/>
+        <conn input="textpath3.position" output="grid1"/>
+        <conn input="negate1.value" output="from"/>
+        <conn input="age.value1" output="negate1"/>
+        <conn input="age.value2" output="to"/>
+        <conn input="line_angle1.position" output="grid1"/>
+        <conn input="translate3.shape" output="line_angle1"/>
+        <conn input="multiply1.value1" output="age"/>
+        <conn input="line_angle1.distance" output="multiply1"/>
+        <conn input="combine1.list1" output="textpath1"/>
+        <conn input="compound1.shape1" output="translate1"/>
+        <conn input="compound1.shape2" output="translate2"/>
+        <conn input="combine1.list2" output="compound1"/>
+        <conn input="importance.list" output="philosophers"/>
+        <conn input="textpath1.position" output="grid1"/>
+        <conn input="star1.position" output="grid1"/>
+        <conn input="combine2.list2" output="translate4"/>
+        <conn input="translate4.shape" output="colorize1"/>
+        <conn input="convert_range1.value" output="importance"/>
+        <conn input="rgb_color1.red" output="convert_range1"/>
+        <conn input="rgb_color1.blue" output="convert_range1"/>
+        <conn input="colorize1.fill" output="rgb_color1"/>
+        <conn input="colorize1.shape" output="star1"/>
+        <conn input="combine2.list1" output="translate3"/>
+        <conn input="combine3.list1" output="combine1"/>
+        <conn input="combine3.list2" output="combine2"/>
+        <conn input="rgb_color1.green" output="convert_range1"/>
+    </node>
+</ndbx>
