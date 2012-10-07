@@ -50,6 +50,14 @@
         </node>
         <node name="compound3" prototype="corevector.compound" x="390" y="710"/>
         <node name="compound2" prototype="corevector.compound" x="280" y="610"/>
+        <node name="compound1" prototype="corevector.compound" x="140" y="640">
+            <param name="function">
+                <value>subtracted</value>
+            </param>
+            <param name="invert_difference">
+                <value>1</value>
+            </param>
+        </node>
         <node name="arc1" prototype="corevector.arc" x="-60" y="660">
             <param name="width">
                 <value>1115.0</value>
@@ -62,14 +70,6 @@
             </param>
             <param name="degrees">
                 <value>64.0</value>
-            </param>
-        </node>
-        <node name="compound1" prototype="corevector.compound" x="140" y="640">
-            <param name="function">
-                <value>subtracted</value>
-            </param>
-            <param name="invert_difference">
-                <value>1</value>
             </param>
         </node>
         <node name="textpath1" prototype="corevector.textpath" x="-30" y="770">
@@ -177,20 +177,6 @@
                 <expression>width</expression>
             </param>
         </node>
-        <node name="arc1" prototype="corevector.arc" x="790" y="-1790">
-            <param name="width">
-                <value>5500.0</value>
-            </param>
-            <param name="height">
-                <expression>width</expression>
-            </param>
-            <param name="start_angle">
-                <value>-18.0</value>
-            </param>
-            <param name="degrees">
-                <value>16.0</value>
-            </param>
-        </node>
         <node name="compound1" prototype="corevector.compound" x="970" y="-1740">
             <param name="function">
                 <value>subtracted</value>
@@ -205,6 +191,20 @@
                 <value>6.0</value>
             </param>
         </node>
+        <node name="arc1" prototype="corevector.arc" x="790" y="-1790">
+            <param name="width">
+                <value>5500.0</value>
+            </param>
+            <param name="height">
+                <expression>width</expression>
+            </param>
+            <param name="start_angle">
+                <value>-18.0</value>
+            </param>
+            <param name="degrees">
+                <value>16.0</value>
+            </param>
+        </node>
         <conn input="textonpath1" output="compound1" port="shape"/>
         <conn input="compound1" output="arc1" port="shape"/>
         <conn input="compound1" output="ellipse1" port="shapeB"/>
@@ -212,7 +212,7 @@
     <node name="merge1" prototype="corevector.merge" rendered="true" x="770" y="-2140"/>
     <node name="philosophs" prototype="corevector.geonet" x="260" y="-1780">
         <param name="file" type="string" widget="file">
-            <value>../data/philo-db/core-philosophs.csv</value>
+            <value>../../data/philo-db/core-philosophs.csv</value>
         </param>
         <param name="from" type="float">
             <value>1400.0</value>
@@ -223,7 +223,7 @@
         <param name="color" type="color">
             <value>#919191ff</value>
         </param>
-        <node name="person" prototype="corevector.null" x="10" y="550">
+        <node name="person" prototype="corevector.null" x="-70" y="550">
             <param name="id" type="int">
                 <expression>stamp("persons_value_0", 0)</expression>
             </param>
@@ -415,6 +415,7 @@ def cook(self):
             </param>
         </node>
         <node name="merge1" prototype="corevector.merge" rendered="true" x="680" y="290"/>
+        <node name="merge2" prototype="corevector.merge" x="440" y="470"/>
         <node name="connect1" prototype="corevector.connect" x="730" y="590">
             <param name="closed">
                 <value>0</value>
@@ -429,7 +430,6 @@ def cook(self):
                 <value>2.0</value>
             </param>
         </node>
-        <node name="merge2" prototype="corevector.merge" x="440" y="470"/>
         <node name="compound2" prototype="corevector.compound" x="870" y="820">
             <param name="function">
                 <value>intersected</value>
@@ -660,28 +660,6 @@ def cook(self):
                 <expression>parent.angle_christ +90</expression>
             </param>
         </node>
-        <node name="rect3" prototype="corevector.rect" x="-50" y="450">
-            <param name="width">
-                <expression>rect2.width * 1.5</expression>
-            </param>
-            <param name="height">
-                <value>70.0</value>
-            </param>
-            <param name="rx">
-                <value>50.0</value>
-            </param>
-            <param name="ry">
-                <value>50.0</value>
-            </param>
-        </node>
-        <node name="transform2" prototype="corevector.transform" x="110" y="420">
-            <param name="ty">
-                <expression>rect2.width /2.9</expression>
-            </param>
-            <param name="r">
-                <value>90.0</value>
-            </param>
-        </node>
         <node name="transform11" prototype="corevector.transform" x="0" y="-330">
             <param name="tx">
                 <value>-56.0</value>
@@ -693,14 +671,17 @@ def cook(self):
                 <value>45.0</value>
             </param>
         </node>
-        <node name="transform3" prototype="corevector.transform" x="560" y="720">
-            <param name="tx">
-                <value>-82.0</value>
+        <node name="transform2" prototype="corevector.transform" x="110" y="420">
+            <param name="ty">
+                <expression>rect2.width /2.9</expression>
+            </param>
+            <param name="r">
+                <value>90.0</value>
             </param>
         </node>
-        <node name="rect2" prototype="corevector.rect" x="-50" y="340">
+        <node name="rect3" prototype="corevector.rect" x="-50" y="450">
             <param name="width">
-                <value>490.0</value>
+                <expression>rect2.width * 1.5</expression>
             </param>
             <param name="height">
                 <value>70.0</value>
@@ -724,6 +705,25 @@ def cook(self):
             </param>
             <param name="r">
                 <value>90.0</value>
+            </param>
+        </node>
+        <node name="rect2" prototype="corevector.rect" x="-50" y="340">
+            <param name="width">
+                <value>490.0</value>
+            </param>
+            <param name="height">
+                <value>70.0</value>
+            </param>
+            <param name="rx">
+                <value>50.0</value>
+            </param>
+            <param name="ry">
+                <value>50.0</value>
+            </param>
+        </node>
+        <node name="transform3" prototype="corevector.transform" x="560" y="720">
+            <param name="tx">
+                <value>-82.0</value>
             </param>
         </node>
         <node name="transform10" prototype="corevector.transform" x="90" y="150">
@@ -1040,6 +1040,7 @@ def cook(self):
                 <value>#414141ff</value>
             </param>
         </node>
+        <node name="merge10" prototype="corevector.merge" x="1230" y="1980"/>
         <node name="color3" prototype="corevector.color" x="870" y="1400">
             <param name="fill">
                 <expression>parent.color</expression>
@@ -1051,7 +1052,6 @@ def cook(self):
                 <value>4.0</value>
             </param>
         </node>
-        <node name="merge10" prototype="corevector.merge" x="1230" y="1980"/>
         <node name="color4" prototype="corevector.color" x="690" y="80">
             <param name="fill">
                 <expression>parent.color</expression>
@@ -1065,7 +1065,6 @@ def cook(self):
                 <value>-3.0</value>
             </param>
         </node>
-        <node name="place1" prototype="corevector.place" x="410" y="2130"/>
         <node name="copy2" prototype="corevector.copy" x="520" y="2150">
             <param name="copies">
                 <value>8</value>
@@ -1074,6 +1073,7 @@ def cook(self):
                 <value>45.0</value>
             </param>
         </node>
+        <node name="place1" prototype="corevector.place" x="410" y="2130"/>
         <node name="merge12" prototype="corevector.merge" x="1140" y="210"/>
         <node name="merge11" prototype="corevector.merge" x="580" y="-10"/>
         <node name="ellipse10" prototype="corevector.ellipse" x="840" y="40">
@@ -1106,11 +1106,6 @@ def cook(self):
                 <expression>width</expression>
             </param>
         </node>
-        <node name="color2" prototype="corevector.color" x="860" y="760">
-            <param name="fill">
-                <expression>parent.color</expression>
-            </param>
-        </node>
         <node name="line1" prototype="corevector.line" x="240" y="2220">
             <param name="distance">
                 <value>537.0</value>
@@ -1120,6 +1115,11 @@ def cook(self):
             </param>
             <param name="points">
                 <value>8</value>
+            </param>
+        </node>
+        <node name="color2" prototype="corevector.color" x="860" y="760">
+            <param name="fill">
+                <expression>parent.color</expression>
             </param>
         </node>
         <node name="color1" prototype="corevector.color" x="960" y="440">
@@ -1199,7 +1199,7 @@ def cook(self):
     <node name="ring_1" prototype="corevector.geonet" x="100" y="-2160">
         <port name="c"/>
         <param name="file" type="string" widget="file">
-            <value>../data/philo-db/periods-period1.csv</value>
+            <value>../../data/philo-db/periods-period1.csv</value>
         </param>
         <param name="width" type="float">
             <value>2000.0</value>
@@ -1411,7 +1411,7 @@ def cook(self):
     <node name="ring_2" prototype="corevector.geonet" x="60" y="-2060">
         <port name="c"/>
         <param name="file" type="string" widget="file">
-            <value>../data/philo-db/periods-period2.csv</value>
+            <value>../../data/philo-db/periods-period2.csv</value>
         </param>
         <param name="width" type="float">
             <value>2200.0</value>
@@ -1628,7 +1628,7 @@ def cook(self):
     <node name="ring_3" prototype="corevector.geonet" x="0" y="-1970">
         <port name="c"/>
         <param name="file" type="string" widget="file">
-            <value>../data/philo-db/periods-centuries.csv</value>
+            <value>../../data/philo-db/periods-centuries.csv</value>
         </param>
         <param name="width" type="float">
             <value>2451.0</value>
@@ -1655,7 +1655,20 @@ def cook(self):
                 <expression>-period.middle_angle - 90.0</expression>
             </param>
         </node>
-        <node name="merge1" prototype="corevector.merge" x="710" y="190"/>
+        <node name="ellipse1" prototype="corevector.ellipse" x="280" y="290">
+            <param name="width">
+                <expression>arc2.width - period.height * 200.0</expression>
+            </param>
+            <param name="height">
+                <expression>width</expression>
+            </param>
+            <param name="fill">
+                <value>#020202ff</value>
+            </param>
+            <param name="stroke">
+                <value>#8d8d8dff</value>
+            </param>
+        </node>
         <node name="arc2" prototype="corevector.arc" x="270" y="190">
             <port name="p"/>
             <param name="width">
@@ -1671,20 +1684,7 @@ def cook(self):
                 <expression>period.degrees</expression>
             </param>
         </node>
-        <node name="ellipse1" prototype="corevector.ellipse" x="280" y="290">
-            <param name="width">
-                <expression>arc2.width - period.height * 200.0</expression>
-            </param>
-            <param name="height">
-                <expression>width</expression>
-            </param>
-            <param name="fill">
-                <value>#020202ff</value>
-            </param>
-            <param name="stroke">
-                <value>#8d8d8dff</value>
-            </param>
-        </node>
+        <node name="merge1" prototype="corevector.merge" x="710" y="190"/>
         <node name="compound1" prototype="corevector.compound" x="430" y="230">
             <param name="function">
                 <value>subtracted</value>
@@ -1694,6 +1694,21 @@ def cook(self):
             </param>
             <param name="strokeWidth">
                 <value>1.0</value>
+            </param>
+        </node>
+        <node name="textpath1" prototype="corevector.textpath" x="140" y="700">
+            <port name="p"/>
+            <param name="text">
+                <expression>period.name</expression>
+            </param>
+            <param name="font">
+                <value>Courier-Bold</value>
+            </param>
+            <param name="size">
+                <value>47.0</value>
+            </param>
+            <param name="fill">
+                <value>#171717ff</value>
             </param>
         </node>
         <node name="period" prototype="corevector.null" x="-70" y="310">
@@ -1738,21 +1753,6 @@ def cook(self):
             </param>
             <param name="color" type="color">
                 <expression>[parent.colors.color1, parent.colors.color2, parent.colors.color3, parent.colors.color4][parentid-1]</expression>
-            </param>
-        </node>
-        <node name="textpath1" prototype="corevector.textpath" x="140" y="700">
-            <port name="p"/>
-            <param name="text">
-                <expression>period.name</expression>
-            </param>
-            <param name="font">
-                <value>Courier-Bold</value>
-            </param>
-            <param name="size">
-                <value>47.0</value>
-            </param>
-            <param name="fill">
-                <value>#171717ff</value>
             </param>
         </node>
         <conn input="periods" output="merge1" port="shape"/>
@@ -1958,7 +1958,7 @@ def cook(self):
         <node name="merge2" prototype="corevector.merge" x="-90" y="-1520"/>
         <node name="datastamp1" prototype="corevector.datastamp" rendered="true" x="170" y="-1510">
             <param name="file">
-                <value>../data/philo-db/core-philosophs.csv</value>
+                <value>../../data/philo-db/core-philosophs.csv</value>
             </param>
             <param name="tableName">
                 <value>index</value>
@@ -2064,7 +2064,7 @@ def cook(self):
         <node name="merge2" prototype="corevector.merge" x="-90" y="-1520"/>
         <node name="datastamp1" prototype="corevector.datastamp" rendered="true" x="170" y="-1510">
             <param name="file">
-                <value>../data/philo-db/core-schools.csv</value>
+                <value>../../data/philo-db/core-schools.csv</value>
             </param>
             <param name="tableName">
                 <value>index</value>
