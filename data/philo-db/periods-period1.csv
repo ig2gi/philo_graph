@@ -1,5 +1,0 @@
-ID,DATE1,DATE2,PERIOD,PARENT,height
-1,-700,500,Antique,0,1
-2,500,1400,Medievale,0,2
-3,1400,1800,Moderne,0,1
-4,1800,2000,Contemporaine,0,2
